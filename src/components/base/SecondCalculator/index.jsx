@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import UserForm from '../UserForm'
 import AmountContainer from '../AmountContainer'
@@ -13,10 +13,12 @@ const SecondCalculatorBlock = styled.div`
 `
 
 const SecondCalculator = () => {
+  const [value, setValue] = useState('')
+
   return (
     <SecondCalculatorBlock>
-      <UserForm />
-      <AmountContainer />
+      <UserForm value={value} handleValueChange={setValue} />
+      <AmountContainer amount={value} />
     </SecondCalculatorBlock>
   )
 }

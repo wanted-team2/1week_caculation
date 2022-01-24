@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import PropTypes from 'prop-types'
+import { addComma, removeComma } from '@utils/functions'
 
 const UserFormBlock = styled.form`
   display: flex;
@@ -14,10 +16,14 @@ const UserFormBlock = styled.form`
   }
 `
 
-const UserForm = () => {
+const UserForm = ({ value, handleValueChange }) => {
   return (
     <UserFormBlock>
-      <input type="text" />
+      <input
+        type="text"
+        value={addComma(value)}
+        onChange={(e) => handleValueChange(removeComma(e.target.value))}
+      />
       <select name="" id="">
         <option value="1">1</option>
         <option value="1">1</option>
@@ -28,3 +34,8 @@ const UserForm = () => {
 }
 
 export default UserForm
+
+UserForm.propTypes = {
+  value: PropTypes.string,
+  handleValueChange: PropTypes.func,
+}
