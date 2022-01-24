@@ -1,1 +1,17 @@
+## Node.js
 node_modules
+
+## Jest
+coverage
+
+# VS Code
+.vscode
+
+## IntelliJ
+.idea
+
+## Mac OS
+.DS_*
+
+## process
+.env
