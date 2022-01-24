@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
 import { addComma, removeComma } from '@utils/functions'
+import { NATIONS } from '@utils/constants'
 
 const UserFormBlock = styled.form`
   display: flex;
@@ -16,7 +17,7 @@ const UserFormBlock = styled.form`
   }
 `
 
-const UserForm = ({ value, handleValueChange }) => {
+const UserForm = ({ value, handleValueChange, nation, handleNationChange }) => {
   return (
     <UserFormBlock>
       <input
@@ -24,10 +25,15 @@ const UserForm = ({ value, handleValueChange }) => {
         value={addComma(value)}
         onChange={(e) => handleValueChange(removeComma(e.target.value))}
       />
-      <select name="" id="">
-        <option value="1">1</option>
-        <option value="1">1</option>
-        <option value="1">1</option>
+      <select
+        defaultValue={nation}
+        onChange={(e) => handleNationChange(e.target.value)}
+      >
+        {Object.values(NATIONS).map((nation) => (
+          <option key={nation} value={nation}>
+            {nation}
+          </option>
+        ))}
       </select>
     </UserFormBlock>
   )
@@ -38,4 +44,6 @@ export default UserForm
 UserForm.propTypes = {
   value: PropTypes.string,
   handleValueChange: PropTypes.func,
+  nation: PropTypes.string,
+  handleNationChange: PropTypes.func,
 }
