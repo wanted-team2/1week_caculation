@@ -9,3 +9,10 @@ export const getDate = () => {
   const date = new Date()
   return `${date.getUTCFullYear()}-${MONTH[date.getMonth()]}-${date.getDate()}`
 }
+
+export const exchange = (price, from, to, rates) => {
+  if (!Object.entries(rates).length) {
+    return
+  }
+  return ((price / rates[from]) * rates[to]).toFixed(2)
+}
