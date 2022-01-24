@@ -14,7 +14,7 @@ const SecondCalculatorBlock = styled.div`
 `
 
 const SecondCalculator = () => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState('0')
   const [nation, setNation] = useState(NATIONS.USD)
 
   return (
