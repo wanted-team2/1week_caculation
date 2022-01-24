@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
-import { addComma, getDate } from '@utils/functions'
+import { addComma, getDate, exchange } from '@utils/functions'
 import PropTypes from 'prop-types'
 import { NATIONS } from '@utils/constants'
 
@@ -29,6 +29,17 @@ const AmountView = styled.div`
 
 const AmountContainer = ({ amount, fromNation }) => {
   const [toNation, setToNation] = useState(NATIONS.CAD)
+  const [rates, setRates] = useState({})
+
+  useEffect(async () => {
+    const response = await fetch('/dummy.json')
+    const data = await response.json()
+    const rates = Object.entries(data.quotes).reduce((rates, [key, value]) => {
+      rates[key.replace('USD', '')] = value
+      return rates
+    }, {})
+    setRates(rates)
+  }, [])
 
   useEffect(() => {
     if (toNation !== fromNation) {
@@ -60,7 +71,7 @@ const AmountContainer = ({ amount, fromNation }) => {
         )}
       </AmountHeader>
       <AmountView>
-        {toNation} : {addComma(amount)}
+        {toNation} : {exchange(amount, fromNation, toNation, rates)}
         <br />
         기준일: {getDate()}
       </AmountView>
