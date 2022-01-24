@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { addComma } from '@utils/functions'
+import { addComma, getDate } from '@utils/functions'
 import PropTypes from 'prop-types'
 import { NATIONS } from '@utils/constants'
 
@@ -40,7 +40,7 @@ const AmountContainer = ({ amount, currentNation }) => {
       <AmountView>
         {currentNation} : {addComma(amount)}
         <br />
-        기준일:
+        기준일: {getDate()}
       </AmountView>
     </AmountContainerBlock>
   )
