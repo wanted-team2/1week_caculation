@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { addComma } from '../../../utils/functions'
+import PropTypes from 'prop-types'
 
 const AmountContainerBlock = styled.div`
   width: 100%;
@@ -21,7 +23,7 @@ const AmountView = styled.div`
   padding: 24px;
 `
 
-const AmountContainer = () => {
+const AmountContainer = ({ amount }) => {
   return (
     <AmountContainerBlock>
       <AmountHeader>
@@ -31,9 +33,17 @@ const AmountContainer = () => {
         <HeaderTap>4</HeaderTap>
         <HeaderTap>5</HeaderTap>
       </AmountHeader>
-      <AmountView>기준일: </AmountView>
+      <AmountView>
+        {addComma(amount)}
+        <br />
+        기준일:
+      </AmountView>
     </AmountContainerBlock>
   )
+}
+
+AmountContainer.propTypes = {
+  amount: PropTypes.string,
 }
 
 export default AmountContainer
