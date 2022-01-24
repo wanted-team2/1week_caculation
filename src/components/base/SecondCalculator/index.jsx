@@ -25,7 +25,7 @@ const SecondCalculator = () => {
         nation={nation}
         handleNationChange={setNation}
       />
-      <AmountContainer amount={value} currentNation={nation} />
+      <AmountContainer amount={value} fromNation={nation} />
     </SecondCalculatorBlock>
   )
 }

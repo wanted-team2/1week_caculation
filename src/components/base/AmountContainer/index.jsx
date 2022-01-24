@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { addComma, getDate } from '@utils/functions'
 import PropTypes from 'prop-types'
@@ -19,26 +19,48 @@ const HeaderTap = styled.li`
   width: 100%;
   border-bottom: 1px solid black;
   text-align: center;
+  &:hover {
+    cursor: pointer;
+  }
 `
 const AmountView = styled.div`
   padding: 24px;
 `
 
-const AmountContainer = ({ amount, currentNation }) => {
+const AmountContainer = ({ amount, fromNation }) => {
+  const [toNation, setToNation] = useState(NATIONS.CAD)
+
+  useEffect(() => {
+    if (toNation !== fromNation) {
+      return
+    }
+    const firstNation = document.querySelector('.tab').innerHTML
+    setToNation(firstNation)
+  }, [fromNation])
+
+  const handleClick = (e) => {
+    setToNation(e.target.innerHTML)
+  }
+
   return (
     <AmountContainerBlock>
       <AmountHeader>
         {Object.values(NATIONS).map(
           (nation) =>
-            nation !== currentNation && (
-              <HeaderTap key={nation} value={nation}>
+            nation !== fromNation && (
+              <HeaderTap
+                onClick={handleClick}
+                className={'tab'}
+                key={nation}
+                value={nation}
+              >
                 {nation}
               </HeaderTap>
             ),
         )}
       </AmountHeader>
       <AmountView>
-        {currentNation} : {addComma(amount)}
+        {toNation} : {addComma(amount)}
         <br />
         기준일: {getDate()}
       </AmountView>
@@ -48,7 +70,7 @@ const AmountContainer = ({ amount, currentNation }) => {
 
 AmountContainer.propTypes = {
   amount: PropTypes.string,
-  currentNation: PropTypes.string,
+  fromNation: PropTypes.string,
 }
 
 export default AmountContainer
