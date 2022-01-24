@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { addComma } from '../../../utils/functions'
+import { addComma } from '@utils/functions'
 import PropTypes from 'prop-types'
+import { NATIONS } from '@utils/constants'
 
 const AmountContainerBlock = styled.div`
   width: 100%;
@@ -23,18 +24,21 @@ const AmountView = styled.div`
   padding: 24px;
 `
 
-const AmountContainer = ({ amount }) => {
+const AmountContainer = ({ amount, currentNation }) => {
   return (
     <AmountContainerBlock>
       <AmountHeader>
-        <HeaderTap>1</HeaderTap>
-        <HeaderTap>2</HeaderTap>
-        <HeaderTap>3</HeaderTap>
-        <HeaderTap>4</HeaderTap>
-        <HeaderTap>5</HeaderTap>
+        {Object.values(NATIONS).map(
+          (nation) =>
+            nation !== currentNation && (
+              <HeaderTap key={nation} value={nation}>
+                {nation}
+              </HeaderTap>
+            ),
+        )}
       </AmountHeader>
       <AmountView>
-        {addComma(amount)}
+        {currentNation} : {addComma(amount)}
         <br />
         기준일:
       </AmountView>
@@ -44,6 +48,7 @@ const AmountContainer = ({ amount }) => {
 
 AmountContainer.propTypes = {
   amount: PropTypes.string,
+  currentNation: PropTypes.string,
 }
 
 export default AmountContainer
