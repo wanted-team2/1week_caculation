@@ -1,26 +1,37 @@
-import React, { useEffect, useState } from 'react'
-import Api from '@api'
+import React, { useEffect, useRef, useState } from 'react'
+import { useAsync } from '@hooks'
+import { getCurrencyApi } from '@api'
 
 const HomePage = () => {
+  const {
+    loading,
+    error,
+    data: currencyInfo,
+    execute,
+  } = useAsync(getCurrencyApi, true)
+
   const [state, setState] = useState({})
+  const [activeCurrency, setActiveCurrency] = useState({})
+
+  const handleSelectValue = (e) => {
+    setActiveCurrency(e.target.value)
+  }
+
+  useEffect(() => {
+    console.log(activeCurrency, 'activeCurrency')
+  }, [activeCurrency])
 
   useEffect(async () => {
-    try {
-      const { data } = await Api({
-        url: `live?access_key=${process.env.REACT_APP_ACCESS_KEY}`,
-      })
-      const philippines = data.quotes.USDPHP
-      const japan = data.quotes.USDJPY
-      const korea = data.quotes.USDKRW
-      setState({
-        '한국(KRW)': korea,
-        '필리핀(PHP)': philippines,
-        '일본(JPY)': japan,
-      })
-    } catch (error) {
-      throw new Error('API 에러')
-    }
-  }, [])
+    const philippines = currencyInfo?.quotes.USDPHP
+    const japan = currencyInfo?.quotes.USDJPY
+    const korea = currencyInfo?.quotes.USDKRW
+
+    setState({
+      한국: { currency: 'KRW', exchangeRate: korea },
+      필리핀: { currency: 'PHP', exchangeRate: philippines },
+      일본: { currency: 'JPY', exchangeRate: japan },
+    })
+  }, [currencyInfo])
 
   return (
     <>
@@ -29,13 +40,15 @@ const HomePage = () => {
         <strong>송금국가</strong>
         <span>미국(USD)</span>
         <strong>수취국가</strong>
-        <select name="" id="">
-          <option value="한국(KRW)">한국(KRW)</option>
-          <option value="필리핀(PHP)">필리핀(PHP)</option>
-          <option value="일본(JPY)">일본(JPY)</option>
+        <select name="" id="" onChange={handleSelectValue}>
+          {Object.entries(state).map(([country, currencyInfo]) => (
+            <option key={country} value={country}>
+              {country}({currencyInfo.currency})
+            </option>
+          ))}
         </select>
         <strong>환율</strong>
-        <span></span>
+        {/* <span>{activeCurrency.exchangeRate}</span> */}
         <strong>송금액</strong>
         <input type="number" />
         USD
