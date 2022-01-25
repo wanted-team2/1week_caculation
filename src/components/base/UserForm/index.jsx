@@ -2,7 +2,8 @@ import React from 'react'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
 import { addCommaSecond, removeComma } from '@utils/functions'
-import { NATIONS } from '@utils/constants/calculationKey'
+import { SECOND_NATIONS } from '@utils/constants/calculationKey'
+import { checkValidate } from '../../../utils/functions'
 
 const UserFormBlock = styled.form`
   display: flex;
@@ -39,7 +40,7 @@ const UserForm = ({ value, setValue, nation, handleNationChange }) => {
         defaultValue={nation}
         onChange={(e) => handleNationChange(e.target.value)}
       >
-        {Object.values(NATIONS).map((nation) => (
+        {Object.values(SECOND_NATIONS).map((nation) => (
           <option key={nation} value={nation}>
             {nation}
           </option>

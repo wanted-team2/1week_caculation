@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { addComma, getDate, exchange } from '@utils/functions'
 import PropTypes from 'prop-types'
-import { NATIONS } from '@utils/constants/calculationKey'
+import { SECOND_NATIONS } from '@utils/constants/calculationKey'
 
 const AmountContainerBlock = styled.div`
   width: 100%;
@@ -28,7 +28,7 @@ const AmountView = styled.div`
 `
 
 const AmountContainer = ({ amount, fromNation }) => {
-  const [toNation, setToNation] = useState(NATIONS.CAD)
+  const [toNation, setToNation] = useState(SECOND_NATIONS.CAD)
   const [rates, setRates] = useState({})
 
   useEffect(async () => {
@@ -56,7 +56,7 @@ const AmountContainer = ({ amount, fromNation }) => {
   return (
     <AmountContainerBlock>
       <AmountHeader>
-        {Object.values(NATIONS).map(
+        {Object.values(SECOND_NATIONS).map(
           (nation) =>
             nation !== fromNation && (
               <HeaderTap

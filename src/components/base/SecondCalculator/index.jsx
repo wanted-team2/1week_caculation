@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import UserForm from '../UserForm'
 import AmountContainer from '../AmountContainer'
-import { NATIONS } from '@utils/constants/calculationKey'
+import { SECOND_NATIONS } from '@utils/constants/calculationKey'
 
 const SecondCalculatorBlock = styled.div`
   width: 400px;
@@ -15,8 +15,8 @@ const SecondCalculatorBlock = styled.div`
 `
 
 const SecondCalculator = () => {
-  const [value, setValue] = useState('0')
-  const [nation, setNation] = useState(NATIONS.USD)
+  const [value, setValue] = useState('')
+  const [nation, setNation] = useState(SECOND_NATIONS.USD)
 
   return (
     <SecondCalculatorBlock>
