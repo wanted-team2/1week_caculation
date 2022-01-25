@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
-import { addComma, getDate, exchange } from '@utils/functions'
+import { getDate, exchange, formatFloat } from '@utils/functions'
 import PropTypes from 'prop-types'
 import { SECOND_NATIONS } from '@utils/constants/calculationKey'
 
@@ -71,7 +71,8 @@ const AmountContainer = ({ amount, fromNation }) => {
         )}
       </AmountHeader>
       <AmountView>
-        {toNation} : {exchange(amount, fromNation, toNation, rates)}
+        {toNation} :{' '}
+        {formatFloat(exchange(amount, fromNation, toNation, rates))}
         <br />
         기준일: {getDate()}
       </AmountView>

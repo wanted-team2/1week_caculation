@@ -24,6 +24,14 @@ export const exchange = (price, from, to, rates) => {
   return ((price / rates[from]) * rates[to]).toFixed(2)
 }
 
+export const formatFloat = (floatAmount) => {
+  if (!floatAmount) {
+    return
+  }
+  const [intPart, floatPart] = floatAmount.toString().split('.')
+  return `${addCommaSecond(intPart)}.${floatPart}`
+}
+
 export const checkValidate = (currencyValue, maxValue) => {
   //@NOTE: maxValue를 넣지 않을 경우 세번째 조건 스킵
   if (currencyValue === null || isNaN(currencyValue)) return false
