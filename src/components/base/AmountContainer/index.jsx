@@ -1,34 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import { getDate, exchange, formatFloat } from '@utils/functions'
 import PropTypes from 'prop-types'
 import { SECOND_NATIONS } from '@utils/constants/calculationKey'
+import useAmount from './useAmount'
 
 const AmountContainer = ({ amount, fromNation, currencyInfo }) => {
-  const [toNation, setToNation] = useState(SECOND_NATIONS.CAD)
-  const [rates, setRates] = useState({})
-  const [date, setDate] = useState('')
-
-  useEffect(() => {
-    if (!currencyInfo.currencyInfo) {
-      return
-    }
-    const { quotes } = currencyInfo.currencyInfo
-    const rates = Object.entries(quotes).reduce((rates, [key, value]) => {
-      rates[key.replace('USD', '')] = value
-      return rates
-    }, {})
-    setRates(rates)
-    setDate(currencyInfo.currencyInfo.timestamp)
-  }, [currencyInfo])
-
-  useEffect(() => {
-    if (toNation !== fromNation) {
-      return
-    }
-    const firstNation = document.querySelector('.tab').innerHTML
-    setToNation(firstNation)
-  }, [fromNation])
+  const { toNation, setToNation, rates, date } = useAmount({
+    currencyInfo,
+    fromNation,
+  })
 
   const handleClick = (e) => {
     setToNation(e.target.innerHTML)
