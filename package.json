@@ -23,7 +23,8 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test"
+    "test": "craco test",
+    "deploy": "craco build; aws s3 sync ./build s3://pleasedoit --profile=yujeho"
   },
   "eslintConfig": {
     "extends": [
