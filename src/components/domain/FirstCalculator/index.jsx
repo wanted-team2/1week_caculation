@@ -23,6 +23,7 @@ const FirstCalculator = ({ currencyInfo }) => {
       일본: { currency: NATIONS.JPY, exchangeRate: japan },
     })
 
+    // @NOTE: 첫 마운트 후에 데이터를 받아온 후에만 초기화
     if (!isGetData && currencyInfo) {
       setActiveCurrency({
         country: '한국',
