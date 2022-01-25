@@ -3,28 +3,23 @@ import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
 import { addCommaSecond, removeComma } from '@utils/functions'
 import { SECOND_NATIONS } from '@utils/constants/calculationKey'
-import { checkValidate } from '../../../utils/functions'
-
-const UserFormBlock = styled.form`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  > * {
-    width: 150px;
-    height: 30px;
-    border-radius: 8px;
-    text-align: center;
-  }
-`
+import { useInputCursor } from '@hooks'
 
 const UserForm = ({ value, setValue, nation, handleNationChange }) => {
+  const { setCursor, inputRef } = useInputCursor()
+
   const handleValueChange = (e) => {
     const numberWithoutComma = removeComma(e.target.value)
 
-    if (!checkValidate(Number(numberWithoutComma))) {
+    if (~numberWithoutComma.search(/^0|[^\d]/g)) {
       return
     }
+
+    setCursor({
+      type: e.nativeEvent.inputType,
+      position: e.target.selectionStart,
+    })
+
     setValue(numberWithoutComma)
   }
 
@@ -35,6 +30,7 @@ const UserForm = ({ value, setValue, nation, handleNationChange }) => {
         value={addCommaSecond(value)}
         onChange={handleValueChange}
         placeholder={0}
+        ref={inputRef}
       />
       <select
         defaultValue={nation}
@@ -50,11 +46,23 @@ const UserForm = ({ value, setValue, nation, handleNationChange }) => {
   )
 }
 
-export default UserForm
-
 UserForm.propTypes = {
   value: PropTypes.string,
   setValue: PropTypes.func,
   nation: PropTypes.string,
   handleNationChange: PropTypes.func,
 }
+
+const UserFormBlock = styled.form`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  > * {
+    width: 150px;
+    height: 30px;
+    border-radius: 8px;
+    text-align: center;
+  }
+`
+export default UserForm

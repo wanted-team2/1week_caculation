@@ -1,57 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import { getDate, exchange, formatFloat } from '@utils/functions'
 import PropTypes from 'prop-types'
 import { SECOND_NATIONS } from '@utils/constants/calculationKey'
-
-const AmountContainerBlock = styled.div`
-  width: 100%;
-  height: 80%;
-  margin-top: 30px;
-
-  border: 1px solid black;
-`
-const AmountHeader = styled.ul`
-  display: flex;
-  width: 100%;
-`
-const HeaderTap = styled.li`
-  width: 100%;
-  border-bottom: 1px solid black;
-  text-align: center;
-  &:hover {
-    cursor: pointer;
-  }
-`
-const AmountView = styled.div`
-  padding: 24px;
-`
+import useAmount from './useAmount'
 
 const AmountContainer = ({ amount, fromNation, currencyInfo }) => {
-  const [toNation, setToNation] = useState(SECOND_NATIONS.CAD)
-  const [rates, setRates] = useState({})
-  const [date, setDate] = useState('')
-
-  useEffect(() => {
-    if (!currencyInfo.currencyInfo) {
-      return
-    }
-    const { quotes } = currencyInfo.currencyInfo
-    const rates = Object.entries(quotes).reduce((rates, [key, value]) => {
-      rates[key.replace('USD', '')] = value
-      return rates
-    }, {})
-    setRates(rates)
-    setDate(currencyInfo.currencyInfo.timestamp)
-  }, [currencyInfo])
-
-  useEffect(() => {
-    if (toNation !== fromNation) {
-      return
-    }
-    const firstNation = document.querySelector('.tab').innerHTML
-    setToNation(firstNation)
-  }, [fromNation])
+  const { toNation, setToNation, rates, date } = useAmount({
+    currencyInfo,
+    fromNation,
+  })
 
   const handleClick = (e) => {
     setToNation(e.target.innerHTML)
@@ -65,7 +23,7 @@ const AmountContainer = ({ amount, fromNation, currencyInfo }) => {
             nation !== fromNation && (
               <HeaderTap
                 onClick={handleClick}
-                className={'tab'}
+                className={`tab ${toNation === nation ? 'active' : ''}`}
                 key={nation}
                 value={nation}
               >
@@ -83,6 +41,36 @@ const AmountContainer = ({ amount, fromNation, currencyInfo }) => {
     </AmountContainerBlock>
   )
 }
+
+const AmountContainerBlock = styled.div`
+  width: 100%;
+  height: 55%;
+  margin-top: 30px;
+
+  border: 1px solid black;
+`
+const AmountHeader = styled.ul`
+  display: flex;
+  width: 100%;
+`
+const HeaderTap = styled.li`
+  width: 100%;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+  }
+  &.active {
+    border-bottom: none;
+  }
+  &:last-child {
+    border-right: none;
+  }
+`
+const AmountView = styled.div`
+  padding: 24px;
+`
 
 AmountContainer.propTypes = {
   amount: PropTypes.string,

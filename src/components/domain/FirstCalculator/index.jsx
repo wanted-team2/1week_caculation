@@ -35,8 +35,8 @@ const FirstCalculator = ({ currencyInfo }) => {
   }, [currencyInfo, isGetData])
 
   return (
-    <>
-      <Title>환율 계산</Title>
+    <FirstCalculatorBlock>
+      <Title>1번 환율 계산기</Title>
       <FirstCalculatorForm
         state={state}
         activeCurrency={activeCurrency}
@@ -48,7 +48,7 @@ const FirstCalculator = ({ currencyInfo }) => {
         수취금액은 {addComma(+totalMoney)} {activeCurrency.currency} 입니다.
       </p>
       {!isValidate && <ErrorText>송금액이 바르지 않습니다.</ErrorText>}
-    </>
+    </FirstCalculatorBlock>
   )
 }
 
@@ -58,6 +58,16 @@ const Title = styled.h1`
 
 const ErrorText = styled.p`
   color: red;
+`
+
+const FirstCalculatorBlock = styled.div`
+  width: 400px;
+  height: 350px;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 24px;
+  margin-top: 30px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
 `
 
 FirstCalculator.propTypes = {
