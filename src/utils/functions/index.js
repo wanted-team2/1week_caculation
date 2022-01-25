@@ -26,7 +26,7 @@ export const exchange = (price, from, to, rates) => {
 
 export const checkValidate = (currencyValue, maxValue) => {
   //@NOTE: maxValue를 넣지 않을 경우 세번째 조건 스킵
-  if (currencyValue === null) return false
+  if (currencyValue === null || isNaN(currencyValue)) return false
   if (currencyValue < 0) return false
   if (maxValue && currencyValue > maxValue) return false
   if (typeof currencyValue !== 'number') return false

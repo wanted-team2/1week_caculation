@@ -17,13 +17,23 @@ const UserFormBlock = styled.form`
   }
 `
 
-const UserForm = ({ value, handleValueChange, nation, handleNationChange }) => {
+const UserForm = ({ value, setValue, nation, handleNationChange }) => {
+  const handleValueChange = (e) => {
+    const numberWithoutComma = removeComma(e.target.value)
+
+    if (!checkValidate(Number(numberWithoutComma))) {
+      return
+    }
+    setValue(numberWithoutComma)
+  }
+
   return (
     <UserFormBlock>
       <input
         type="text"
         value={addCommaSecond(value)}
-        onChange={(e) => handleValueChange(removeComma(e.target.value))}
+        onChange={handleValueChange}
+        placeholder={0}
       />
       <select
         defaultValue={nation}
@@ -43,7 +53,7 @@ export default UserForm
 
 UserForm.propTypes = {
   value: PropTypes.string,
-  handleValueChange: PropTypes.func,
+  setValue: PropTypes.func,
   nation: PropTypes.string,
   handleNationChange: PropTypes.func,
 }

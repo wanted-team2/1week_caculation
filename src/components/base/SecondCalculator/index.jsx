@@ -22,7 +22,7 @@ const SecondCalculator = () => {
     <SecondCalculatorBlock>
       <UserForm
         value={value}
-        handleValueChange={setValue}
+        setValue={setValue}
         nation={nation}
         handleNationChange={setNation}
       />
