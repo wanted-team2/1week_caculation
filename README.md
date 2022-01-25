@@ -25,11 +25,11 @@
 
 | **수취국가 변경**  | **수취금액 표시**  |
 | :----------------: | :----------------: |
-| ![수취국가 변경]() | ![수취금액 표시]() |
+| ![calc1-1](https://user-images.githubusercontent.com/78653426/151078220-7c81556f-7e54-4c80-bf01-1b832e2c62e1.gif) | ![calc1-2](https://user-images.githubusercontent.com/78653426/151078226-5dd02a14-63d0-4113-b706-fc1abd9ccf40.gif) |
 
 | **에러 메세지 표시** |
 | :------------------: |
-|     ![로그인]()      |
+| ![calc1-3](https://user-images.githubusercontent.com/78653426/151078235-27e23f20-31f8-4815-8a35-e9d37a963ac2.gif) |
 
 ## 2번 계산기
 
@@ -54,4 +54,4 @@
 
 | **수취국가 변경** |     **수취금액 표시**      |
 | :---------------: | :------------------------: |
-|    ![calc2-1](https://user-images.githubusercontent.com/78653426/151075961-c843ce54-39c5-4963-abdf-7c34cafd41e0.gif)    | ![calc2-2](https://user-images.githubusercontent.com/78653426/151075973-3c880218-09a3-49cb-9dec-e7e2ec73eed7.gif) |
+| ![calc2-1](https://user-images.githubusercontent.com/78653426/151075961-c843ce54-39c5-4963-abdf-7c34cafd41e0.gif) | ![calc2-2](https://user-images.githubusercontent.com/78653426/151075973-3c880218-09a3-49cb-9dec-e7e2ec73eed7.gif) |
