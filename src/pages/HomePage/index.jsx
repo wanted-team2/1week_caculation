@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useAsync } from '@hooks'
-import { getCurrencyApi } from '@api'
+import { getCurrencyApi, getMockData } from '@api' // @NOTE: 임시 mock 데이터 적용
 
 const HomePage = () => {
   const {
@@ -8,18 +8,23 @@ const HomePage = () => {
     error,
     data: currencyInfo,
     execute,
-  } = useAsync(getCurrencyApi, true)
+  } = useAsync(getMockData, true)
 
   const [state, setState] = useState({})
   const [activeCurrency, setActiveCurrency] = useState({})
+  const [totalMoney, setTotalMoney] = useState(0)
 
   const handleSelectValue = (e) => {
-    setActiveCurrency(e.target.value)
+    const country = activeCurrency.country
+    setActiveCurrency({ country, ...state[country] })
   }
 
-  useEffect(() => {
-    console.log(activeCurrency, 'activeCurrency')
-  }, [activeCurrency])
+  const handleTotalMoney = (e) => {
+    e.preventDefault()
+    // console.log(typeof e.target.value)
+    console.log(activeCurrency)
+    // setTotalMoney(e.target.value * +activeCurrency.exchangeRate)
+  }
 
   useEffect(async () => {
     const philippines = currencyInfo?.quotes.USDPHP
@@ -40,7 +45,7 @@ const HomePage = () => {
         <strong>송금국가</strong>
         <span>미국(USD)</span>
         <strong>수취국가</strong>
-        <select name="" id="" onChange={handleSelectValue}>
+        <select onChange={handleSelectValue}>
           {Object.entries(state).map(([country, currencyInfo]) => (
             <option key={country} value={country}>
               {country}({currencyInfo.currency})
@@ -48,12 +53,15 @@ const HomePage = () => {
           ))}
         </select>
         <strong>환율</strong>
-        {/* <span>{activeCurrency.exchangeRate}</span> */}
+        <span>
+          {activeCurrency.exchangeRate} {activeCurrency.currency}/USD
+        </span>
         <strong>송금액</strong>
-        <input type="number" />
+        <input type="number" onChange={handleTotalMoney} />
         USD
         <button type="submit">Submit</button>
       </form>
+      <p>{totalMoney}</p>
     </>
   )
 }
