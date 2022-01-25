@@ -1,31 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { addComma, checkValidate } from '@utils/functions'
+import React, { useEffect, useState } from 'react'
+import { addComma } from '@utils/functions'
 import { NATIONS } from '@utils/constants/calculationKey'
 import styled from '@emotion/styled'
+import { FirstCalculatorForm } from '@components/domain'
 import PropTypes from 'prop-types'
 
 const FirstCalculator = ({ currencyInfo }) => {
-  const inputRef = useRef(null)
   const [state, setState] = useState({})
   const [activeCurrency, setActiveCurrency] = useState({})
   const [totalMoney, setTotalMoney] = useState(0)
   const [isGetData, setIsGetData] = useState(false)
   const [isValidate, setIsValidate] = useState(true)
-
-  const handleSelectValue = (e) => {
-    const country = e.target.value
-    setActiveCurrency({ country, ...state[country] })
-    inputRef.current.value = 0
-    setTotalMoney(0)
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (checkValidate(+inputRef.current.value, 10000)) {
-      setTotalMoney(inputRef.current.value * +activeCurrency.exchangeRate)
-      setIsValidate(true)
-    } else setIsValidate(false)
-  }
 
   useEffect(async () => {
     const philippines = currencyInfo?.quotes?.USDPHP
@@ -52,35 +37,13 @@ const FirstCalculator = ({ currencyInfo }) => {
   return (
     <>
       <Title>환율 계산</Title>
-      <form onSubmit={handleSubmit}>
-        <TextWrapper>
-          <Label>송금국가</Label>
-          <span>미국({NATIONS.USD})</span>
-        </TextWrapper>
-        <TextWrapper>
-          <Label>수취국가</Label>
-          <select onChange={handleSelectValue}>
-            {Object.entries(state).map(([country, currencyInfo]) => (
-              <option key={country} value={country}>
-                {country}({currencyInfo.currency})
-              </option>
-            ))}
-          </select>
-        </TextWrapper>
-        <TextWrapper>
-          <Label>환율</Label>
-          <span>
-            {addComma(+activeCurrency.exchangeRate)} {activeCurrency.currency}/
-            {NATIONS.USD}
-          </span>
-        </TextWrapper>
-        <TextWrapper>
-          <Label>송금액</Label>
-          <input ref={inputRef} type="number" placeholder={0} />
-          {NATIONS.USD}
-        </TextWrapper>
-        <SubmitBtn type="submit">Submit</SubmitBtn>
-      </form>
+      <FirstCalculatorForm
+        state={state}
+        activeCurrency={activeCurrency}
+        setTotalMoney={setTotalMoney}
+        setIsValidate={setIsValidate}
+        setActiveCurrency={setActiveCurrency}
+      />
       <p>
         수취금액은 {addComma(+totalMoney)} {activeCurrency.currency} 입니다.
       </p>
@@ -91,21 +54,6 @@ const FirstCalculator = ({ currencyInfo }) => {
 
 const Title = styled.h1`
   padding: 15px 0;
-`
-
-const TextWrapper = styled.div`
-  padding: 5px 0;
-`
-
-const Label = styled.strong`
-  padding-right: 5px;
-`
-
-const SubmitBtn = styled.button`
-  padding: 5px 80px;
-  margin: 8px 0;
-  border: 1px solid;
-  cursor: pointer;
 `
 
 const ErrorText = styled.p`
