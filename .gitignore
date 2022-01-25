@@ -15,3 +15,6 @@ coverage
 
 ## process
 .env
+
+## yarn error
+yarn-error.log
