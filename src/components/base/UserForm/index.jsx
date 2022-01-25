@@ -24,7 +24,7 @@ const UserForm = ({ value, setValue, nation, handleNationChange }) => {
   }
 
   return (
-    <UserFormBlock>
+    <UserFormBlock onSubmit={(e) => e.preventDefault()}>
       <input
         type="text"
         value={addCommaSecond(value)}
