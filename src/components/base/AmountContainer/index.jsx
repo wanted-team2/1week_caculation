@@ -23,7 +23,7 @@ const AmountContainer = ({ amount, fromNation, currencyInfo }) => {
             nation !== fromNation && (
               <HeaderTap
                 onClick={handleClick}
-                className={'tab'}
+                className={`tab ${toNation === nation ? 'active' : ''}`}
                 key={nation}
                 value={nation}
               >
@@ -56,9 +56,16 @@ const AmountHeader = styled.ul`
 const HeaderTap = styled.li`
   width: 100%;
   border-bottom: 1px solid black;
+  border-right: 1px solid black;
   text-align: center;
   &:hover {
     cursor: pointer;
+  }
+  &.active {
+    border-bottom: none;
+  }
+  &:last-child {
+    border-right: none;
   }
 `
 const AmountView = styled.div`
