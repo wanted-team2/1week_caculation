@@ -11,6 +11,7 @@ const SecondCalculator = (currencyInfo) => {
 
   return (
     <SecondCalculatorBlock>
+      <TitleBlock>2번 환율 계산기</TitleBlock>
       <UserForm
         value={value}
         setValue={setValue}
@@ -26,9 +27,13 @@ const SecondCalculator = (currencyInfo) => {
   )
 }
 
+const TitleBlock = styled.h1`
+  padding: 15px 0;
+`
+
 const SecondCalculatorBlock = styled.div`
   width: 400px;
-  height: 450px;
+  height: 350px;
   border: 1px solid black;
   border-radius: 8px;
   padding: 24px;

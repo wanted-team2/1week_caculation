@@ -44,7 +44,7 @@ const AmountContainer = ({ amount, fromNation, currencyInfo }) => {
 
 const AmountContainerBlock = styled.div`
   width: 100%;
-  height: 80%;
+  height: 55%;
   margin-top: 30px;
 
   border: 1px solid black;
