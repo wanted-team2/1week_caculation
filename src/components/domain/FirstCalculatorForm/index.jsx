@@ -15,16 +15,21 @@ const FirstCalculatorForm = ({
   const handleSelectValue = (e) => {
     const country = e.target.value
     setActiveCurrency({ country, ...state[country] })
-    inputRef.current.value = 0
+    inputRef.current.value = ''
     setTotalMoney(0)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    // @NOTE: validation 체크
     if (checkValidate(+inputRef.current.value, 10000)) {
       setTotalMoney(inputRef.current.value * +activeCurrency.exchangeRate)
       setIsValidate(true)
     } else setIsValidate(false)
+
+    // @NOTE: 송금액 왼쪽 0 제거
+    inputRef.current.value = +inputRef.current.value.replace(/^0+/, '')
   }
 
   return (
