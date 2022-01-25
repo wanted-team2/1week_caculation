@@ -16,7 +16,8 @@ const FirstCalculatorForm = ({
     const country = e.target.value
     setActiveCurrency({ country, ...state[country] })
     inputRef.current.value = ''
-    setTotalMoney(0)
+    setTotalMoney('')
+
   }
 
   const handleSubmit = (e) => {
