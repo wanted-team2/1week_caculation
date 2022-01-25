@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { addComma, getDate, exchange } from '@utils/functions'
 import PropTypes from 'prop-types'
-import { NATIONS } from '@utils/constants'
+import { NATIONS } from '@utils/constants/calculationKey'
 
 const AmountContainerBlock = styled.div`
   width: 100%;

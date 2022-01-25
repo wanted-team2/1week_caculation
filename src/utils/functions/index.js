@@ -1,7 +1,7 @@
 import { MONTH } from '@utils/constants/calculationKey'
 
-// export const addComma = (priceNumber) =>
-//   priceNumber.toString().replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
+export const addCommaSecond = (priceNumber) =>
+  priceNumber.toString().replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
 
 export const addComma = (number) => {
   return number.toLocaleString('ko-KR', {
