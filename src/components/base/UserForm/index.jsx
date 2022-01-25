@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
-import { addComma, removeComma } from '@utils/functions'
-import { NATIONS } from '@utils/constants'
+import { addCommaSecond, removeComma } from '@utils/functions'
+import { NATIONS } from '@utils/constants/calculationKey'
 
 const UserFormBlock = styled.form`
   display: flex;
@@ -22,7 +22,7 @@ const UserForm = ({ value, handleValueChange, nation, handleNationChange }) => {
     <UserFormBlock>
       <input
         type="text"
-        value={addComma(value)}
+        value={addCommaSecond(value)}
         onChange={(e) => handleValueChange(removeComma(e.target.value))}
       />
       <select

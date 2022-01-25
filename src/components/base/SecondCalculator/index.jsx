@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import UserForm from '../UserForm'
 import AmountContainer from '../AmountContainer'
-import { NATIONS } from '@utils/constants'
+import { NATIONS } from '@utils/constants/calculationKey'
 
 const SecondCalculatorBlock = styled.div`
   width: 400px;
@@ -10,6 +10,7 @@ const SecondCalculatorBlock = styled.div`
   border: 1px solid black;
   border-radius: 8px;
   padding: 24px;
+  margin-top: 30px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
 `
 
