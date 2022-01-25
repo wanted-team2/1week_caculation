@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useRef } from 'react'
 import { NATIONS } from '@utils/constants/calculationKey'
 import { addComma, checkValidate } from '@utils/functions'
 import styled from '@emotion/styled'
