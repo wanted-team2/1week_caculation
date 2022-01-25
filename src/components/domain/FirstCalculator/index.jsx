@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { addComma } from '@utils/functions'
 import { NATIONS } from '@utils/constants/calculationKey'
 import styled from '@emotion/styled'
+import { FirstCalculatorInfo } from '@components/base'
 import { FirstCalculatorForm } from '@components/domain'
 import PropTypes from 'prop-types'
 
@@ -45,10 +45,11 @@ const FirstCalculator = ({ currencyInfo }) => {
         setIsValidate={setIsValidate}
         setActiveCurrency={setActiveCurrency}
       />
-      <p>
-        수취금액은 {addComma(+totalMoney)} {activeCurrency.currency} 입니다.
-      </p>
-      {!isValidate && <ErrorText>송금액이 바르지 않습니다.</ErrorText>}
+      <FirstCalculatorInfo
+        totalMoney={totalMoney}
+        activeCurrency={activeCurrency}
+        isValidate={isValidate}
+      />
     </FirstCalculatorBlock>
   )
 }
