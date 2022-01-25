@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
-import { addCommaSecond, removeComma, checkValidate } from '@utils/functions'
+import { addCommaSecond, removeComma } from '@utils/functions'
 import { SECOND_NATIONS } from '@utils/constants/calculationKey'
 import { useInputCursor } from '@hooks'
 
@@ -9,16 +9,17 @@ const UserForm = ({ value, setValue, nation, handleNationChange }) => {
   const { setCursor, inputRef } = useInputCursor()
 
   const handleValueChange = (e) => {
+    const numberWithoutComma = removeComma(e.target.value)
+
+    if (~numberWithoutComma.search(/^0|[^\d]/g)) {
+      return
+    }
+
     setCursor({
       type: e.nativeEvent.inputType,
       position: e.target.selectionStart,
     })
 
-    const numberWithoutComma = removeComma(e.target.value)
-    //
-    // if (!checkValidate(Number(numberWithoutComma))) {
-    //   return
-    // }
     setValue(numberWithoutComma)
   }
 
