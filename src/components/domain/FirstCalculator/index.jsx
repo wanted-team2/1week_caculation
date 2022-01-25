@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 const FirstCalculator = ({ currencyInfo }) => {
   const [state, setState] = useState({})
   const [activeCurrency, setActiveCurrency] = useState({})
-  const [totalMoney, setTotalMoney] = useState(0)
+  const [totalMoney, setTotalMoney] = useState('')
   const [isGetData, setIsGetData] = useState(false)
   const [isValidate, setIsValidate] = useState(true)
 
