@@ -60,6 +60,10 @@ const ErrorText = styled.p`
   color: red;
 `
 
+const ErrorText = styled.p`
+  color: red;
+`
+
 FirstCalculator.propTypes = {
   currencyInfo: PropTypes.object,
 }
