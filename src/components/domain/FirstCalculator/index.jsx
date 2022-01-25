@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { addComma, putZeroLastTwo } from '@utils/functions'
+import { addComma, checkValidate } from '@utils/functions'
 import { NATIONS } from '@utils/constants/calculationKey'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
@@ -10,6 +10,7 @@ const FirstCalculator = ({ currencyInfo }) => {
   const [activeCurrency, setActiveCurrency] = useState({})
   const [totalMoney, setTotalMoney] = useState(0)
   const [isGetData, setIsGetData] = useState(false)
+  const [isValidate, setIsValidate] = useState(true)
 
   const handleSelectValue = (e) => {
     const country = e.target.value
@@ -20,7 +21,10 @@ const FirstCalculator = ({ currencyInfo }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setTotalMoney(inputRef.current.value * +activeCurrency.exchangeRate)
+    if (checkValidate(+inputRef.current.value, 10000)) {
+      setTotalMoney(inputRef.current.value * +activeCurrency.exchangeRate)
+      setIsValidate(true)
+    } else setIsValidate(false)
   }
 
   useEffect(async () => {
@@ -51,7 +55,7 @@ const FirstCalculator = ({ currencyInfo }) => {
       <form onSubmit={handleSubmit}>
         <TextWrapper>
           <Label>송금국가</Label>
-          <span>미국(USD)</span>
+          <span>미국({NATIONS.USD})</span>
         </TextWrapper>
         <TextWrapper>
           <Label>수취국가</Label>
@@ -66,22 +70,21 @@ const FirstCalculator = ({ currencyInfo }) => {
         <TextWrapper>
           <Label>환율</Label>
           <span>
-            {addComma(putZeroLastTwo(+activeCurrency.exchangeRate))}{' '}
-            {activeCurrency.currency}/USD
+            {addComma(+activeCurrency.exchangeRate)} {activeCurrency.currency}/
+            {NATIONS.USD}
           </span>
         </TextWrapper>
         <TextWrapper>
           <Label>송금액</Label>
           <input ref={inputRef} type="number" placeholder={0} />
-          USD
+          {NATIONS.USD}
         </TextWrapper>
         <SubmitBtn type="submit">Submit</SubmitBtn>
       </form>
       <p>
-        수취금액은 {addComma(putZeroLastTwo(totalMoney))}{' '}
-        {activeCurrency.currency} 입니다.
+        수취금액은 {addComma(+totalMoney)} {activeCurrency.currency} 입니다.
       </p>
-      <p className="ErrorText"></p>
+      {!isValidate && <ErrorText>송금액이 바르지 않습니다.</ErrorText>}
     </>
   )
 }
@@ -105,8 +108,16 @@ const SubmitBtn = styled.button`
   cursor: pointer;
 `
 
+const ErrorText = styled.p`
+  color: red;
+`
+
 FirstCalculator.propTypes = {
-  currencyInfo: PropTypes.oneOfType([() => null, PropTypes.object]).isRequired,
+  currencyInfo: PropTypes.object,
+}
+
+FirstCalculator.defaultProps = {
+  currencyInfo: null,
 }
 
 export default FirstCalculator

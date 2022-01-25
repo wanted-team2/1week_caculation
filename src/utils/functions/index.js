@@ -4,11 +4,10 @@ import { MONTH } from '@utils/constants/calculationKey'
 //   priceNumber.toString().replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
 
 export const addComma = (number) => {
-  return number.toLocaleString('ko-KR')
-}
-
-export const putZeroLastTwo = (number) => {
-  return number.toFixed(2)
+  return number.toLocaleString('ko-KR', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
 }
 
 export const removeComma = (priceString) => priceString.replaceAll(',', '')
@@ -23,4 +22,13 @@ export const exchange = (price, from, to, rates) => {
     return
   }
   return ((price / rates[from]) * rates[to]).toFixed(2)
+}
+
+export const checkValidate = (currencyValue, maxValue) => {
+  //@NOTE: maxValue를 넣지 않을 경우 세번째 조건 스킵
+  if (currencyValue === null) return false
+  if (currencyValue < 0) return false
+  if (maxValue && currencyValue > maxValue) return false
+  if (typeof currencyValue !== 'number') return false
+  return true
 }
