@@ -12,9 +12,11 @@ export const addComma = (number) => {
 
 export const removeComma = (priceString) => priceString.replaceAll(',', '')
 
-export const getDate = () => {
-  const date = new Date()
-  return `${date.getUTCFullYear()}-${MONTH[date.getMonth()]}-${date.getDate()}`
+export const getDate = (date) => {
+  const formatDate = new Date(date * 1000)
+  return `${formatDate.getUTCFullYear()}-${
+    MONTH[formatDate.getMonth()]
+  }-${formatDate.getDate()}`
 }
 
 export const exchange = (price, from, to, rates) => {

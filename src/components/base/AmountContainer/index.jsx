@@ -30,6 +30,7 @@ const AmountView = styled.div`
 const AmountContainer = ({ amount, fromNation }) => {
   const [toNation, setToNation] = useState(SECOND_NATIONS.CAD)
   const [rates, setRates] = useState({})
+  const [date, setDate] = useState('')
 
   useEffect(async () => {
     const response = await fetch('/dummy.json')
@@ -39,6 +40,7 @@ const AmountContainer = ({ amount, fromNation }) => {
       return rates
     }, {})
     setRates(rates)
+    setDate(data.timestamp)
   }, [])
 
   useEffect(() => {
@@ -74,7 +76,7 @@ const AmountContainer = ({ amount, fromNation }) => {
         {toNation} :{' '}
         {formatFloat(exchange(amount, fromNation, toNation, rates))}
         <br />
-        기준일: {getDate()}
+        기준일: {getDate(date)}
       </AmountView>
     </AmountContainerBlock>
   )
