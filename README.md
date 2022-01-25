@@ -47,8 +47,11 @@
 - [x] 날짜 포멧은 YYYY-Month-dd 형태여야한다.(ex: 2022-Jan-01)
 - [x] 올바르지 않은 금액 입력 시 에러 메세지 송금액이 바르지 않습니다 표시
 
+
+
+
 ### 데모
 
 | **수취국가 변경** |     **수취금액 표시**      |
 | :---------------: | :------------------------: |
-|    ![로그인]()    | ![메인 페이지 - 첫 화면]() |
+|    ![calc2-1](https://user-images.githubusercontent.com/78653426/151075961-c843ce54-39c5-4963-abdf-7c34cafd41e0.gif)    | ![calc2-2](https://user-images.githubusercontent.com/78653426/151075973-3c880218-09a3-49cb-9dec-e7e2ec73eed7.gif) |
