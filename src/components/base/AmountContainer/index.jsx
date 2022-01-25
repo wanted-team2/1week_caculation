@@ -28,12 +28,18 @@ const AmountView = styled.div`
 `
 
 const AmountContainer = ({ amount, fromNation }) => {
+  // input으로 들어온 금액을 바꿀 탭 국가(toNation) 생태값
   const [toNation, setToNation] = useState(NATIONS.CAD)
   const [rates, setRates] = useState({})
 
+  // API가 한달에 무료 250번 호출이길래 더미 파일을 만들어서 환율 데이터를 받아옴
   useEffect(async () => {
     const response = await fetch('/dummy.json')
     const data = await response.json()
+
+    // 환율들 포매팅 과정
+    // USD : 1
+    // KWR : 1197.52343..
     const rates = Object.entries(data.quotes).reduce((rates, [key, value]) => {
       rates[key.replace('USD', '')] = value
       return rates
@@ -42,9 +48,12 @@ const AmountContainer = ({ amount, fromNation }) => {
   }, [])
 
   useEffect(() => {
+    // select에서 fromNation이 바뀔 때 현재 선택한 탭과 같은 나라일 경우 가장 첫 번째 탭으로 포커싱
     if (toNation !== fromNation) {
+      // 그렇지 않은경우 아무것도 안함
       return
     }
+
     const firstNation = document.querySelector('.tab').innerHTML
     setToNation(firstNation)
   }, [fromNation])
@@ -56,8 +65,10 @@ const AmountContainer = ({ amount, fromNation }) => {
   return (
     <AmountContainerBlock>
       <AmountHeader>
+        {/*{5개 국가 탭 만들기}*/}
         {Object.values(NATIONS).map(
           (nation) =>
+            // nation !== fromNation 현재 선택된 국가와 렌더링하려는 탭의 국가가 같으면 렌더링하지 않게하는 조건문
             nation !== fromNation && (
               <HeaderTap
                 onClick={handleClick}

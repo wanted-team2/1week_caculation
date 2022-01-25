@@ -14,7 +14,9 @@ const SecondCalculatorBlock = styled.div`
 `
 
 const SecondCalculator = () => {
+  // 유저 금액 입력 상태값
   const [value, setValue] = useState('0')
+  // 유저가 입력할 변환하기 전의 from 국가 상태값
   const [nation, setNation] = useState(NATIONS.USD)
 
   return (
