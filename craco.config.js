@@ -1,18 +1,22 @@
-const path = require('path')
+const CracoAlias = require('craco-alias')
 
 module.exports = {
-  babel: {
-    presets: ['@emotion/babel-preset-css-prop'],
-  },
-  webpack: {
-    alias: {
-      '@api': path.resolve(__dirname, 'src/api'),
-      '@assets': path.resolve(__dirname, 'src/assets'),
-      '@components': path.resolve(__dirname, 'src/components'),
-      '@hooks': path.resolve(__dirname, 'src/hooks'),
-      '@pages': path.resolve(__dirname, 'src/pages'),
-      '@style': path.resolve(__dirname, 'src/style'),
-      '@utils': path.resolve(__dirname, 'src/utils'),
+  plugins: [
+    {
+      plugin: CracoAlias,
+      options: {
+        source: 'options',
+        baseUrl: './',
+        aliases: {
+          '@api': './src/api',
+          '@assets': './src/assets',
+          '@components': './src/components',
+          '@hooks': './src/hooks',
+          '@pages': './src/pages',
+          '@style': './src/style',
+          '@utils': './src/utils',
+        },
+      },
     },
-  },
+  ],
 }
