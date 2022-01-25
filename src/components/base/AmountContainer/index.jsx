@@ -4,29 +4,6 @@ import { getDate, exchange, formatFloat } from '@utils/functions'
 import PropTypes from 'prop-types'
 import { SECOND_NATIONS } from '@utils/constants/calculationKey'
 
-const AmountContainerBlock = styled.div`
-  width: 100%;
-  height: 80%;
-  margin-top: 30px;
-
-  border: 1px solid black;
-`
-const AmountHeader = styled.ul`
-  display: flex;
-  width: 100%;
-`
-const HeaderTap = styled.li`
-  width: 100%;
-  border-bottom: 1px solid black;
-  text-align: center;
-  &:hover {
-    cursor: pointer;
-  }
-`
-const AmountView = styled.div`
-  padding: 24px;
-`
-
 const AmountContainer = ({ amount, fromNation, currencyInfo }) => {
   const [toNation, setToNation] = useState(SECOND_NATIONS.CAD)
   const [rates, setRates] = useState({})
@@ -83,6 +60,29 @@ const AmountContainer = ({ amount, fromNation, currencyInfo }) => {
     </AmountContainerBlock>
   )
 }
+
+const AmountContainerBlock = styled.div`
+  width: 100%;
+  height: 80%;
+  margin-top: 30px;
+
+  border: 1px solid black;
+`
+const AmountHeader = styled.ul`
+  display: flex;
+  width: 100%;
+`
+const HeaderTap = styled.li`
+  width: 100%;
+  border-bottom: 1px solid black;
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+  }
+`
+const AmountView = styled.div`
+  padding: 24px;
+`
 
 AmountContainer.propTypes = {
   amount: PropTypes.string,

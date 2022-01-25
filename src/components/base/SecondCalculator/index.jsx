@@ -5,16 +5,6 @@ import AmountContainer from '../AmountContainer'
 import { SECOND_NATIONS } from '@utils/constants/calculationKey'
 import PropTypes from 'prop-types'
 
-const SecondCalculatorBlock = styled.div`
-  width: 400px;
-  height: 450px;
-  border: 1px solid black;
-  border-radius: 8px;
-  padding: 24px;
-  margin-top: 30px;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
-`
-
 const SecondCalculator = (currencyInfo) => {
   const [value, setValue] = useState('')
   const [nation, setNation] = useState(SECOND_NATIONS.USD)
@@ -35,6 +25,16 @@ const SecondCalculator = (currencyInfo) => {
     </SecondCalculatorBlock>
   )
 }
+
+const SecondCalculatorBlock = styled.div`
+  width: 400px;
+  height: 450px;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 24px;
+  margin-top: 30px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+`
 
 SecondCalculator.propTypes = {
   currencyInfo: PropTypes.object,
