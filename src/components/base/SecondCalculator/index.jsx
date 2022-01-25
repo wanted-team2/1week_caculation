@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import UserForm from '../UserForm'
 import AmountContainer from '../AmountContainer'
 import { SECOND_NATIONS } from '@utils/constants/calculationKey'
+import PropTypes from 'prop-types'
 
 const SecondCalculatorBlock = styled.div`
   width: 400px;
@@ -14,7 +15,7 @@ const SecondCalculatorBlock = styled.div`
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
 `
 
-const SecondCalculator = () => {
+const SecondCalculator = (currencyInfo) => {
   const [value, setValue] = useState('')
   const [nation, setNation] = useState(SECOND_NATIONS.USD)
 
@@ -26,9 +27,17 @@ const SecondCalculator = () => {
         nation={nation}
         handleNationChange={setNation}
       />
-      <AmountContainer amount={value} fromNation={nation} />
+      <AmountContainer
+        amount={value}
+        fromNation={nation}
+        currencyInfo={currencyInfo}
+      />
     </SecondCalculatorBlock>
   )
+}
+
+SecondCalculator.propTypes = {
+  currencyInfo: PropTypes.object,
 }
 
 export default SecondCalculator

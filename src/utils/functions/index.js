@@ -19,7 +19,7 @@ export const getDate = (date) => {
   }-${formatDate.getDate()}`
 }
 
-export const exchange = (price, from, to, rates) => {
+export const exchange = (price = 0, from, to, rates) => {
   if (!Object.entries(rates).length) {
     return
   }
@@ -27,9 +27,10 @@ export const exchange = (price, from, to, rates) => {
 }
 
 export const formatFloat = (floatAmount) => {
-  if (!floatAmount) {
+  if (!floatAmount || isNaN(floatAmount)) {
     return
   }
+
   const [intPart, floatPart] = floatAmount.toString().split('.')
   return `${addCommaSecond(intPart)}.${floatPart}`
 }

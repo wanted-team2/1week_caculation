@@ -27,21 +27,23 @@ const AmountView = styled.div`
   padding: 24px;
 `
 
-const AmountContainer = ({ amount, fromNation }) => {
+const AmountContainer = ({ amount, fromNation, currencyInfo }) => {
   const [toNation, setToNation] = useState(SECOND_NATIONS.CAD)
   const [rates, setRates] = useState({})
   const [date, setDate] = useState('')
 
-  useEffect(async () => {
-    const response = await fetch('/dummy.json')
-    const data = await response.json()
-    const rates = Object.entries(data.quotes).reduce((rates, [key, value]) => {
+  useEffect(() => {
+    if (!currencyInfo.currencyInfo) {
+      return
+    }
+    const { quotes } = currencyInfo.currencyInfo
+    const rates = Object.entries(quotes).reduce((rates, [key, value]) => {
       rates[key.replace('USD', '')] = value
       return rates
     }, {})
     setRates(rates)
-    setDate(data.timestamp)
-  }, [])
+    setDate(currencyInfo.currencyInfo.timestamp)
+  }, [currencyInfo])
 
   useEffect(() => {
     if (toNation !== fromNation) {
@@ -85,6 +87,7 @@ const AmountContainer = ({ amount, fromNation }) => {
 AmountContainer.propTypes = {
   amount: PropTypes.string,
   fromNation: PropTypes.string,
+  currencyInfo: PropTypes.object,
 }
 
 export default AmountContainer
