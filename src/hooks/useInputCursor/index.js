@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-const useInputCursor = (value) => {
+const useInputCursor = () => {
   const [cursor, setCursor] = useState({ type: null, position: null })
   const inputRef = useRef()
 
@@ -13,12 +13,20 @@ const useInputCursor = (value) => {
       input.selectionStart = position + 1
       return
     }
+
+    if (
+      type === 'deleteContentBackward' &&
+      (input.value.length - 3) % 4 === 0
+    ) {
+      input.selectionEnd = position - 1
+      input.selectionStart = position - 1
+      return
+    }
     if (input) {
       input.selectionEnd = position
       input.selectionStart = position
     }
-  }, [inputRef, cursor, value])
-
+  }, [inputRef, cursor])
   return { setCursor, inputRef }
 }
 

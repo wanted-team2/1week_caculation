@@ -6,7 +6,8 @@ import { SECOND_NATIONS } from '@utils/constants/calculationKey'
 import { useInputCursor } from '@hooks'
 
 const UserForm = ({ value, setValue, nation, handleNationChange }) => {
-  const { setCursor, inputRef } = useInputCursor(value)
+  const { setCursor, inputRef } = useInputCursor()
+
   const handleValueChange = (e) => {
     setCursor({
       type: e.nativeEvent.inputType,
