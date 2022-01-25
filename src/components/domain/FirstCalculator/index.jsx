@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { addComma } from '@utils/functions'
 import { NATIONS } from '@utils/constants/calculationKey'
 import styled from '@emotion/styled'
+import { FirstCalculatorInfo } from '@components/base'
 import { FirstCalculatorForm } from '@components/domain'
 import PropTypes from 'prop-types'
 
 const FirstCalculator = ({ currencyInfo }) => {
   const [state, setState] = useState({})
   const [activeCurrency, setActiveCurrency] = useState({})
-  const [totalMoney, setTotalMoney] = useState(0)
+  const [totalMoney, setTotalMoney] = useState('')
   const [isGetData, setIsGetData] = useState(false)
   const [isValidate, setIsValidate] = useState(true)
 
@@ -23,6 +23,7 @@ const FirstCalculator = ({ currencyInfo }) => {
       일본: { currency: NATIONS.JPY, exchangeRate: japan },
     })
 
+    // @NOTE: 첫 마운트 후에 데이터를 받아온 후에만 초기화
     if (!isGetData && currencyInfo) {
       setActiveCurrency({
         country: '한국',
@@ -44,10 +45,11 @@ const FirstCalculator = ({ currencyInfo }) => {
         setIsValidate={setIsValidate}
         setActiveCurrency={setActiveCurrency}
       />
-      <p>
-        수취금액은 {addComma(+totalMoney)} {activeCurrency.currency} 입니다.
-      </p>
-      {!isValidate && <ErrorText>송금액이 바르지 않습니다.</ErrorText>}
+      <FirstCalculatorInfo
+        totalMoney={totalMoney}
+        activeCurrency={activeCurrency}
+        isValidate={isValidate}
+      />
     </FirstCalculatorBlock>
   )
 }
