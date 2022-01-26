@@ -70,8 +70,8 @@ $ yarn jest --watchAll
 
 ### 팀원
 
-- 김지영
-- 고병표
+- [김지영](https://github.com/Jeong-jeong)
+- [고병표](https://github.com/kokoball)
 
 ### 구현 명세
 
@@ -99,8 +99,8 @@ $ yarn jest --watchAll
 
 ### 팀원
 
-- 유제호
-- 홍수연
+- [유제호](https://github.com/orgs/wanted-team2/people/ludacirs)
+- [홍수연](https://github.com/orgs/wanted-team2/people/suyeon-hong)
 
 ### 구현 명세
 
