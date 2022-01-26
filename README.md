@@ -52,6 +52,12 @@ $ yarn install
 $ yarn start
 ```
 
+3-2. 테스팅을 합니다.
+
+```
+$ yarn jest --watchAll
+```
+
 ## 공통 명세
 
 - [x] 송금액은 숫자만 입력되도록 한다.
