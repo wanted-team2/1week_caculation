@@ -16,4 +16,8 @@ const InfoContainer = styled.div`
   padding: 2px;
 `
 
+const ErrorText = styled.p`
+  color: red;
+`
+
 export default FirstCalculatorInfo
