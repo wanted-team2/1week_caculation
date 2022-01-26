@@ -11,7 +11,6 @@ const FirstCalculatorInfo = ({ totalMoney, activeCurrency, isValidate }) => {
       ) : (
         <ErrorText>송금액이 바르지 않습니다.</ErrorText>
       )}
-      {/* {!isValidate && } */}
     </InfoContainer>
   )
 }
