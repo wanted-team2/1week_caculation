@@ -99,8 +99,8 @@ $ yarn jest --watchAll
 
 ### 팀원
 
-- [유제호](https://github.com/orgs/wanted-team2/people/ludacirs)
-- [홍수연](https://github.com/orgs/wanted-team2/people/suyeon-hong)
+- [유제호](https://ludacirs.github.io/)
+- [홍수연](https://github.com/suyeon-hong)
 
 ### 구현 명세
 
