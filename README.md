@@ -84,13 +84,13 @@ $ yarn jest --watchAll
 
 ### 데모
 
-| **수취국가 변경** | **수취금액 표시** |
-| :-: | :-: |
-| ![calc1-1](https://user-images.githubusercontent.com/78653426/151078220-7c81556f-7e54-4c80-bf01-1b832e2c62e1.gif) | ![calc1-2](https://user-images.githubusercontent.com/78653426/151078226-5dd02a14-63d0-4113-b706-fc1abd9ccf40.gif) |
 
-| **에러 메세지 표시** |
-| :-: |
-| ![calc1-3](https://user-images.githubusercontent.com/78653426/151078235-27e23f20-31f8-4815-8a35-e9d37a963ac2.gif) |
+
+
+| **수취국가 변경** | **에러 메세지 표시** |
+| :-: | :-: |
+| ![calc1-1](https://user-images.githubusercontent.com/68528752/151088275-473b80f5-41de-4dcd-9210-3e63013b1ee2.gif) | ![calc1-2](https://user-images.githubusercontent.com/68528752/151088821-8e464e8f-4ed0-489e-8a73-f67f9981edaf.gif) |
+
 
 <br>
 <br>
