@@ -15,8 +15,6 @@
 │   ├── dummy.json
 │   ├── favicon.ico
 │   ├── index.html
-│   ├── logo192.png
-│   ├── logo512.png
 │   ├── manifest.json
 │   └── robots.txt
 ├── src
