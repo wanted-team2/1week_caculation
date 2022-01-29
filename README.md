@@ -99,7 +99,7 @@ $ yarn jest --watchAll
 
 ### 팀원
 
-- [유제호](https://ludacirs.github.io/)
+- [유제호](https://github.com/ludacirs)
 - [홍수연](https://github.com/suyeon-hong)
 
 ### 구현 명세
